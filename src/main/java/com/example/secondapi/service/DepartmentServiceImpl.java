@@ -1,6 +1,7 @@
 package com.example.secondapi.service;
 
 import com.example.secondapi.entity.Department;
+import com.example.secondapi.error.DepartmentNotFoundException;
 import com.example.secondapi.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department findDepartmentById(Long departmentId) {
-        return departmentRepository.findById(departmentId).get();
+    public Department findDepartmentById(Long departmentId) throws DepartmentNotFoundException {
+       Optional<Department> department = departmentRepository.findById(departmentId);
+
+       if (!department.isPresent()){
+           throw new DepartmentNotFoundException("Department Not Available");
+       }
+       return department.get();
     }
 
     @Override

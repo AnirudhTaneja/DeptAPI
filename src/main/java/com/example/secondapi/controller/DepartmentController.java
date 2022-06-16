@@ -1,6 +1,7 @@
 package com.example.secondapi.controller;
 
 import com.example.secondapi.entity.Department;
+import com.example.secondapi.error.DepartmentNotFoundException;
 import com.example.secondapi.service.DepartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/{id}")
-    public Department findDepartmentById(@PathVariable("id") Long departmentId){
+    public Department findDepartmentById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
         return departmentService.findDepartmentById(departmentId);
     }
 

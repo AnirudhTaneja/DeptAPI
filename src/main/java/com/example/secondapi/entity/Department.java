@@ -1,6 +1,6 @@
 package com.example.secondapi.entity;
 
-import jdk.jfr.DataAmount;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
